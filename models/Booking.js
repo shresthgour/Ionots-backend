@@ -15,11 +15,27 @@ const bookingSchema = new mongoose.Schema({
     type: String,
     required: true,
     lowercase: true,
-    trim: true
+    trim: true,
+    validate: {
+      validator: function(v) {
+        // Regex for email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(v);
+      },
+      message: props => `${props.value} is not a valid email address!`
+    }
   },
   phoneNumber: {
     type: String,
-    required: true
+    required: true,
+    validate: {
+      validator: function(v) {
+        // Regex to ensure exactly 10 digits
+        const phoneRegex = /^\d{10}$/;
+        return phoneRegex.test(v);
+      },
+      message: props => `${props.value} is not a valid 10-digit phone number!`
+    }
   },
   numberOfTravelers: {
     type: Number,
