@@ -23,9 +23,9 @@ app.use(express.json());
 connectDB();
 
 // Routes
-app.use('/api/packages', packageRoutes);
-app.use('/api/bookings', bookingRoutes);
-app.use('/api/admin', adminRoutes);
+app.use('/packages', packageRoutes);
+app.use('/bookings', bookingRoutes);
+app.use('/admin', adminRoutes);
 
 // Global error handler
 app.use((err, req, res, next) => {
